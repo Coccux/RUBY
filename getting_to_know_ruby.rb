@@ -42,7 +42,7 @@ end
 
 # Спрашиваем команду для выполнения в Ruby
 puts "Введите команду на языке Ruby:"
-ruby_command = $stdin.gets.chomp
+ruby_command = $stdin.gets.chomp #сохраняем команду в виде переменной 
 
 # Выполнение команды Ruby
 puts "Результат выполнения команды на Ruby:"
@@ -109,5 +109,4 @@ def sum_divisors_relative_prime_with_sum_and_not_with_product(number)
 end
 # Метод 3
 puts "Сумма делителей числа #{number}, взаимно простых с суммой цифр числа и не взаимно простых с произведением цифр числа: #{sum_divisors_relative_prime_with_sum_and_not_with_product(number)}"
-
 
