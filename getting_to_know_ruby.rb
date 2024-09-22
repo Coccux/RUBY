@@ -58,15 +58,18 @@ system(os_command)
 
 # Задание 4:  Работа с числами
 
+# Пример использования:
+number = 36
+
 # Метод 1: Найти количество делителей числа, не делящихся на 3
 def count_divisors_not_divisible_by_3(number)
   divisors = (1..number).select { |div| number % div == 0 }  # Находим все делители числа
   divisors_not_divisible_by_3 = divisors.reject { |div| div % 3 == 0 }  # Убираем те, что делятся на 3
   divisors_not_divisible_by_3.count
 end
-
 # Метод 1
 puts "Количество делителей числа #{number}, не делящихся на 3: #{count_divisors_not_divisible_by_3(number)}"
+
 
 # Метод 2: Найти минимальную нечетную цифру числа
 def find_min_odd_digit(number)
@@ -74,7 +77,6 @@ def find_min_odd_digit(number)
   odd_digits = digits.select(&:odd?)  # Отбираем только нечетные цифры
   odd_digits.min  # Возвращаем минимальную нечетную цифру, если такие есть
 end
-
 # Метод 2
 min_odd_digit = find_min_odd_digit(number)
 if min_odd_digit.nil?
@@ -82,3 +84,30 @@ if min_odd_digit.nil?
 else
   puts "Минимальная нечетная цифра числа #{number}: #{min_odd_digit}"
 end
+
+
+# Нахождение НОД (greatest common divisors)
+def gcd(a, b)
+  b == 0 ? a : gcd(b, a % b)
+end
+
+
+# Метод 3: Найти сумму всех делителей числа, взаимно простых с суммой цифр числа и не взаимно простых с произведением цифр числа
+def sum_divisors_relative_prime_with_sum_and_not_with_product(number)
+  digits = number.to_s.chars.map(&:to_i)  # Получаем массив цифр числа
+  sum_of_digits = digits.sum  # Находим сумму цифр числа
+  product_of_digits = digits.reduce(1, :*)  # Находим произведение цифр числа
+
+  divisors = (1..number).select { |div| number % div == 0 }  # Находим все делители числа
+
+  # Отбираем делители, которые взаимно просты с суммой цифр и не взаимно просты с произведением цифр
+  valid_divisors = divisors.select do |div|
+    gcd(div, sum_of_digits) == 1 && gcd(div, product_of_digits) != 1
+  end
+
+  valid_divisors.sum  # Возвращаем сумму таких делителей
+end
+# Метод 3
+puts "Сумма делителей числа #{number}, взаимно простых с суммой цифр числа и не взаимно простых с произведением цифр числа: #{sum_divisors_relative_prime_with_sum_and_not_with_product(number)}"
+
+
