@@ -82,4 +82,10 @@ class Student
   def git=(git)
     @git = git
   end
+  
+  # Метод для вывода информации о студенте
+  def to_s
+    "ID: #{id || 'не указан'}, ФИО: #{last_name} #{first_name} #{middle_name}, Телефон: #{phone || 'не указан'}, Telegram: #{telegram || 'не указан'}, Email: #{email || 'не указан'}, Git: #{git || 'не указан'}"
+  end
 end
+
